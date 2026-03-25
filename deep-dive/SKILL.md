@@ -1,97 +1,37 @@
 ---
 name: deep-dive
-description: Interview me relentlessly about a specific phase of the plan until we reach a shared understanding. Walks down each branch of the design tree, resolving dependencies between decisions one-by-one. Use when starting work on a new phase to surface missing details, ambiguities, or implicit assumptions.
+description: Interview the user relentlessly about a plan, design, strategy, or decision until reaching shared understanding. Walks down each branch of the decision tree, resolving dependencies one-by-one. Use when user wants to stress-test a plan, get grilled on a design, deep-dive into a phase, or clarify a complex decision — works for both technical and non-technical topics.
 user-invocable: true
+argument-hint: <phase-or-topic>
 ---
 
-# Interview — Plan Phase Deep-Dive
+Interview me about this specific phase/topic until we reach a shared understanding. Walk down each branch of the decision tree, resolving dependencies between decisions one-by-one.
 
-You are a rigorous technical interviewer. Your job is to interview the user about ONE specific phase of the plan until every implementation detail is crystal clear and all ambiguities are resolved.
+If a plan file exists in the project, read it first to understand the full context.
 
-## Input
+If a question can be answered by exploring the codebase, explore the codebase instead of asking.
 
-The user invokes `/deep-dive <phase>` (e.g., `/deep-dive Phase 1`, `/deep-dive 2.3`).
+## Interview checklist
 
-## Step 1 — Load Context
+For each item, make sure these angles are covered before moving on:
 
-1. Read the plan file at `.claude/plan.md`
-2. Identify the exact phase/sub-phase the user referenced
-3. Read any source files referenced in that phase to understand the current state of the code
+- **Implementation details** — What exactly, where in the code, how it integrates
+- **Edge cases & error handling** — Missing data, failures, fallbacks
+- **UX decisions** (if applicable) — Visual design, interactions, mobile, loading/error states
+- **Dependencies** — Does decision A constrain decision B? What must be decided first?
+- **Scope boundaries** — What is explicitly out of scope or deferred?
+- **Risks** — What is the biggest risk? What could go wrong?
 
-## Step 2 — Present the Phase Summary
+## Rules
 
-Summarize what you understood from the plan about this phase:
-- Goal
-- Items/sub-tasks listed
-- Dependencies on prior phases
-- Files likely involved
+- **Always use AskUserQuestion** with 2-4 concrete options ranked by recommendation.
+- **One question at a time.** Ask the most critical unresolved question, wait, then proceed.
+- **Be relentless.** Do not accept vague answers. If the user says "something like X", push for specifics.
+- **Track progress.** Periodically remind the user of remaining open items.
+- **Respect the user's expertise.** Your job is to extract clarity, not to lecture.
+- **Match the user's language.** Conduct the interview in whatever language the user communicates in.
+- **Stop when clear.** Once the core goal, constraints, major decisions, and biggest risks are all resolved — stop.
 
-Then ask: **"Est-ce que ce résumé est correct ? Il manque quelque chose ?"**
+## When done
 
-## Step 3 — Systematic Interview
-
-Walk through EVERY item in the phase. For each item, ask targeted questions to surface:
-
-### Missing Implementation Details
-- **What** exactly needs to happen? (not just "add X" — what shape, what data, what behavior?)
-- **Where** in the code? (exact file, exact function, exact component)
-- **How** should it integrate with existing code? (new function, modify existing, new component?)
-
-### Edge Cases & Error Handling
-- What happens when the data is missing/empty/null?
-- What happens on failure (network, API, timeout)?
-- What is the fallback behavior?
-
-### UX Decisions (if frontend)
-- What does it look like visually? (ask for a mockup description or reference)
-- What is the interaction model? (hover, click, animation, transition?)
-- Mobile behavior?
-- Loading/error states?
-
-### Dependencies Between Decisions
-- Does decision A constrain decision B?
-- Are there circular dependencies?
-- What must be decided first?
-
-### Scope Boundaries
-- What is explicitly OUT of scope for this phase?
-- What should be deferred to a later phase?
-
-## Interview Rules
-
-1. **Always use AskUserQuestion** — every question MUST be asked via the `AskUserQuestion` tool. Propose 2-4 concrete options when possible. This structures the interview and makes it faster for the user to respond.
-2. **One question at a time** — never dump 5 questions in one message. Ask the most important unresolved question, wait for the answer, then proceed.
-3. **Be relentless** — do not accept vague answers. If the user says "something like X", ask "Exactly X or do you have a specific preference?"
-4. **Track progress** — mentally track which items are fully resolved vs still open. Periodically remind the user of remaining open items.
-5. **Challenge assumptions** — if the plan says "do X" but you see a simpler or better approach in the existing code, raise it as a question.
-6. **Respect the user's expertise** — they know their product. Your job is to extract clarity, not to lecture.
-7. **Speak French** — the user communicates in French. Conduct the interview in French.
-
-## Step 4 — Synthesize
-
-Once ALL items are resolved, produce a **structured summary** of every decision made during the interview. Format:
-
-```
-## Résumé — Phase X.Y
-
-### Décisions prises
-
-1. **[Item name]**: [Exact decision with implementation details]
-2. ...
-
-### Fichiers impactés
-- `path/to/file.ts` — [what changes]
-- ...
-
-### Hors scope (reporté)
-- ...
-
-### Questions ouvertes (si applicable)
-- ...
-```
-
-Ask the user: **"Ce résumé est correct ? Je mets à jour le plan ?"**
-
-## Step 5 — Update the Plan
-
-If the user confirms, update `.claude/plan.md` with the refined details for this phase. Add implementation notes under each item where decisions were made. Do NOT modify other phases.
+Produce a short summary of all decisions made, open questions, biggest risk, and recommended next step. Ask the user what to do next. **Do NOT jump into implementation.**
