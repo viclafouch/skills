@@ -2,6 +2,12 @@
 
 A collection of agent skills that extend capabilities across planning, development, and code review.
 
+**Install all skills at once:**
+
+```
+npx skills@latest add viclafouch/skills
+```
+
 ## Planning & Design
 
 These skills help you think through problems before writing code.
