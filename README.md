@@ -43,3 +43,17 @@ These skills help you review and improve existing code.
   ```
   npx skills@latest add viclafouch/skills/web-design-guidelines
   ```
+
+## Useful Commands
+
+```bash
+npx skills check                # Check for available updates
+npx skills update               # Update all skills to latest versions
+npx skills list                 # List installed skills (project)
+npx skills ls -g                # List installed skills (global)
+npx skills find [query]         # Search for skills interactively
+npx skills remove               # Remove a skill interactively
+npx skills init my-skill        # Scaffold a new SKILL.md
+npx skills add viclafouch/skills --list   # List available skills without installing
+npx skills add viclafouch/skills -g       # Install globally (~/.claude/skills/)
+```
