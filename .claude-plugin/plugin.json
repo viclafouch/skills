@@ -1,0 +1,11 @@
+{
+  "name": "viclafouch",
+  "description": "How Victor de la Fouchardière works with Claude Code: shape and file GitHub issues, load and start them, and look back on the product.",
+  "author": {
+    "name": "Victor de la Fouchardière",
+    "url": "https://github.com/viclafouch"
+  },
+  "repository": "https://github.com/viclafouch/skills",
+  "license": "MIT",
+  "keywords": ["github", "issues", "workflow", "retro"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "viclafouch",
+  "description": "The Claude Code plugin of Victor de la Fouchardière.",
+  "owner": {
+    "name": "Victor de la Fouchardière",
+    "url": "https://github.com/viclafouch"
+  },
+  "plugins": [
+    {
+      "name": "viclafouch",
+      "source": "./",
+      "description": "How Victor de la Fouchardière works with Claude Code: shape and file GitHub issues, load and start them, and look back on the product."
+    }
+  ]
+}

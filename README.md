@@ -1,59 +1,41 @@
-# Agent Skills
+# viclafouch/skills
 
-A collection of agent skills that extend capabilities across planning, development, and code review.
+The Claude Code plugin of Victor de la Fouchardière: the skills behind how he works, the same on every Mac he uses. The repository is both the plugin and the marketplace that serves it.
 
-**Install all skills at once:**
+## Skills
 
+| Skill | What it does |
+|---|---|
+| `create-issue` | Files one evergreen GitHub issue per run, shaped so a fresh session can take it with nothing else |
+| `load-issue` | Briefs a GitHub issue from its live state: whether it can start, and where its description drifted from the code |
+| `start-issue` | Takes an issue from a fresh base branch to a reviewed working tree, routed to test-driven development, a plain implement loop, or a diagnosis |
+| `product-retro` | Looks back on a session or a subject and proposes grounded product changes, amendments to open issues, or challenges to the plan |
+
+Each skill runs as `/<skill>`, or `/viclafouch:<skill>` when another command already holds the short name. `start-issue` and `product-retro` run only when you type them.
+
+`create-issue` and `start-issue` call skills of the `mattpocock-skills` plugin, from the official marketplace: install it next to this one.
+
+## Install on a Mac
+
+```sh
+claude plugin marketplace add viclafouch/skills
+claude plugin install viclafouch@viclafouch
 ```
-npx skills@latest add viclafouch/skills -a claude-code
+
+Then turn on auto-update for the `viclafouch` marketplace, under **Marketplaces** in `/plugin`. Each Mac then picks up every pushed commit a few minutes after a session starts, and loads it at the next launch.
+
+## Change a skill
+
+Edit the skill in a clone of this repository, then push to `main`. The plugin has no `version`, so every commit is a new release.
+
+Before you push:
+
+```sh
+claude plugin validate .
 ```
 
-## Planning & Design
+To try a change before you push, start a session with `claude --plugin-dir .` from the clone.
 
-These skills help you think through problems before writing code.
+## Add a skill
 
-- **deep-dive** — Interview relentlessly about a specific phase of the plan until reaching shared understanding. Walks down each branch of the design tree, resolving dependencies between decisions one-by-one.
-
-  ```
-  npx skills@latest add viclafouch/skills/deep-dive -a claude-code
-  ```
-
-## Development
-
-These skills help you write, refactor, and maintain code.
-
-- **update-deps** — Audit all outdated dependencies with detailed research on changelogs, breaking changes, bug fixes, and deprecations. Creates a temporary plan without updating anything.
-
-  ```
-  npx skills@latest add viclafouch/skills/update-deps -a claude-code
-  ```
-
-## Code Review
-
-These skills help you review and improve existing code.
-
-- **react-useeffect** — Audit React components for unnecessary useEffect hooks. Identifies anti-patterns like derived state, chained effects, event-driven effects and suggests better alternatives.
-
-  ```
-  npx skills@latest add viclafouch/skills/react-useeffect -a claude-code
-  ```
-
-- **web-design-guidelines** — Review UI code for Web Interface Guidelines compliance. Checks accessibility, UX patterns, and design best practices.
-
-  ```
-  npx skills@latest add viclafouch/skills/web-design-guidelines -a claude-code
-  ```
-
-## Useful Commands
-
-```bash
-npx skills check                # Check for available updates
-npx skills update               # Update all skills to latest versions
-npx skills list                 # List installed skills (project)
-npx skills ls -g                # List installed skills (global)
-npx skills find [query]         # Search for skills interactively
-npx skills remove               # Remove a skill interactively
-npx skills init my-skill        # Scaffold a new SKILL.md
-npx skills add viclafouch/skills --list   # List available skills without installing
-npx skills add viclafouch/skills -g       # Install globally (~/.claude/skills/)
-```
+Add a folder under `skills/` with its `SKILL.md`. The folder name is the command name.
