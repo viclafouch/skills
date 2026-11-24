@@ -29,11 +29,7 @@ Then turn on auto-update for the `viclafouch` marketplace, under **Marketplaces*
 
 Edit the skill in a clone of this repository, then push to `main`. The plugin has no `version`, so every commit is a new release.
 
-Before you push:
-
-```sh
-claude plugin validate .
-```
+Run `pnpm install` once in the clone: it installs a pre-push hook that runs `claude plugin validate .` and stops a push that fails it.
 
 To try a change before you push, start a session with `claude --plugin-dir .` from the clone.
 

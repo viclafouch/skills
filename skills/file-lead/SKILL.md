@@ -19,7 +19,7 @@ Done when you can say, for each lead, what it is, what it is for, and what it br
 Read enough of the project to see where the lead fits: its README, its open issues, and its milestones when it has some. Then pick:
 
 - **An open issue on the same topic**: a comment there.
-- **No such issue**: a new issue, with the labels and the milestone of the repository that fit, when it has some.
+- **No such issue**: a new issue, assigned to the user (`@me`), with the labels and the milestone of the repository that fit, when it has some.
 
 When two places fit equally, or the repository takes no issues, ask, your pick first. A link already in the issue is filed: skip it.
 
