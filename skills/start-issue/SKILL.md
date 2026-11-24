@@ -1,6 +1,6 @@
 ---
 name: start-issue
-description: Start a GitHub issue from a fresh base branch, then route the build to tdd, a plain implement loop, or diagnosing-bugs.
+description: Start a GitHub issue and its companions from a fresh base branch, then route the build to tdd, a plain implement loop, or diagnosing-bugs.
 argument-hint: "<GitHub issue number, e.g. 42>"
 disable-model-invocation: true
 ---
@@ -19,9 +19,9 @@ git fetch origin <base> && git switch <base> && git merge --ff-only origin/<base
 
 In a worktree, `<base>` is often checked out by another worktree and `git switch <base>` refuses. Run `git switch --detach origin/<base>` instead: step 3 branches from there.
 
-Then run `<pm> install && <pm> run --if-present generate`. `<pm>` is the package manager the lockfile names. A failed fetch, merge, install or generate stops the run.
+Then **install**: the project's own install and code generation, the way its scripts run them, such as `<pm> install && <pm> run --if-present generate` with the package manager its lockfile names. A failed fetch, merge or install stops the run.
 
-**Done when** `git rev-parse HEAD` equals `git rev-parse origin/<base>`, installed and generated.
+**Done when** `git rev-parse HEAD` equals `git rev-parse origin/<base>`, installed.
 
 ## 2. Load
 
@@ -29,18 +29,22 @@ Run `load-issue` on the argument.
 
 A startable verdict of no stops the run, with its cause.
 
-Then read in full the product docs the repo's `AGENTS.md` points to. They carry the product's vision and words, and the build serves them.
+The run takes every companion of the brief on its own initiative, and names them in one line: they share the branch, the build and the PR, and their tensions join the issue's.
 
-**Done when** the brief is shown, every product doc is read, and the issue can start.
+Each tension of the brief goes to the user, one AskUserQuestion per tension. Write each call into the description of the issue it belongs to, with `gh issue edit <number> --body-file -`: the issue changes first, the code follows.
+
+Then read in full the product docs the project keeps, such as a vision or a glossary, when it has some. They carry the product's vision and words, and the build serves them.
+
+**Done when** the brief is shown, every tension is settled in the description, every product doc is read, and the issue can start.
 
 ## 3. Branch
 
 The branch is the issue's linked branch, so GitHub links it, and the PR opened from it, to the issue on its own.
 
 - No linked branch (`gh issue develop <number> --list` is empty): `gh issue develop <number> --base <base> --checkout`.
-- The linked branch exists: switch to it, `git pull --ff-only`, rebase it on `origin/<base>`, then rerun `<pm> install && <pm> run --if-present generate`.
+- The linked branch exists: switch to it, `git pull --ff-only`, rebase it on `origin/<base>`, then install again.
 
-**Done when** `HEAD` sits on the linked branch, based on today's `<base>`, installed and generated.
+**Done when** `HEAD` sits on the linked branch, based on today's `<base>`, installed.
 
 ## 4. Route
 
@@ -58,18 +62,17 @@ An issue that mixes both runs **tdd** on its behaviour slice and **implement** o
 
 - **tdd**: run `mattpocock-skills:tdd`. Its seams get your confirmation before the first test.
 - **implement**: a change repeated across many files runs as a codemod first, other work in small slices. After each run or slice, run the typecheck and the test files next to the code you touched.
-- **UI**, on either path: a change to what a person sees loads `frontend-design` and `modern-web-guidance` before its first edit, then the design-engineering skill each concern calls for: `mobile-native` for the phone, `animate` and its siblings for motion, `gestures` for a drag or a swipe, `animation-performance` for dropped frames, `apple-design` for how it feels. Each one gets the task as `args`.
 
-At the end: `lint:fix`, `typecheck` and the full unit test task. A single-package repo runs them from the root scripts. A turbo monorepo runs them on every package the diff touches and on its dependents, through turbo with `--filter="...<pkg>"`. Call turbo the way the root scripts do, wrapper included. Turbo builds the `dist` a dependent reads before its lint runs. A shared config reaches its dependents through the workspace, so their lint is where its new rules land.
+At the end, run the project's lint fix, typecheck and full unit tests, the way its scripts run them, on every package the diff touches and its dependents. A shared config reaches its dependents, so their lint is where its new rules land.
 
-**Done when** every **Done when** line of the issue is met by the diff, and lint, typecheck and tests are green on every touched package and its dependents.
+**Done when** every **Done when** line of the issue and of its companions is met by the diff, and lint, typecheck and tests are green.
 
 ## 6. Review
 
-Run `mattpocock-skills:code-review` since `<base>`, with the issue as the spec. Fix the findings that are real, and check them again with the step 5 commands.
+Run `mattpocock-skills:code-review` since `<base>`, with the issue and its companions as the spec. Fix the findings that are real, and check them again with the step 5 commands.
 
 **Done when** the review shows no open finding, or each one left has its reason.
 
 ## 7. Hand-off
 
-Show the changed files and one line per **Done when** with the code that meets it. Say the files are ready to read in the editor, and wait for the green light. Then commit, and offer to open the PR carrying `Closes #<number>`: through the repo's own pull-request skill when it has one, else `gh pr create` with its body written by `mattpocock-skills:pr`.
+Show the changed files and one line per **Done when**, the companions' included, with the code that meets it. Say the files are ready to read in the editor, and wait for the green light. Then commit, and offer to open the PR carrying a `Closes #<number>` line for the issue and for each companion: through the repo's own pull-request skill when it has one, else `gh pr create` with its body written by `mattpocock-skills:pr`.

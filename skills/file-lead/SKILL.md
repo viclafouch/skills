@@ -23,18 +23,22 @@ Read enough of the project to see where the lead fits: its README, its open issu
 
 When two places fit equally, or the repository takes no issues, ask, your pick first. A link already in the issue is filed: skip it.
 
+Done when each lead has its place.
+
 ## 3. Write
 
-In the language of the repository's issues, so that a reader who opens the issue months later sees at a glance what the lead brings:
+In the language of the repository's issues, so that a reader sees at a glance what the lead brings:
 
 - A short description of the project, package or service.
 - What it could serve in this project, and which part.
 - The advantages it brings, one per line.
 - The user's take, only when they gave one, as theirs.
 
-Keep to what stays true over months: versions, numbers and setup stay in the source.
+Keep to what stays true over months: versions, numbers and setup stay in the source. Name each other issue the lead touches by its number, so that issue links back to it. When the lead goes against what an issue decides, name that decided point, and leave the call to the session that takes the issue.
 
 An image that helps to see the lead, from the user or from the source, goes in with `gh`'s `--attach`. On a public repository, the images show the find, not people.
+
+Done when each lead is posted at its place.
 
 ## 4. Report
 

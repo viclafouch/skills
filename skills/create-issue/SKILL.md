@@ -1,11 +1,10 @@
 ---
 name: create-issue
-description: Create a GitHub issue. Use when the user gives the go on the issues shaped in the conversation (one run per issue), or asks to file something in GitHub.
-user-invocable: true
+description: Create a GitHub issue. Use when the user gives the go on the issues shaped in the conversation, or asks to file something in GitHub.
 argument-hint: <problem-or-topic>
 ---
 
-Create one GitHub issue per run, through the `gh` CLI. A fresh session picks the issue up later with nothing but the issue, so the issue is evergreen: it names the objective and its finish line, official docs carry the reader the rest of the way, and nothing in it rots at the next commit.
+Create GitHub issues one at a time, through the `gh` CLI. Each issue is taken later by a **fresh session**: an agent that starts from zero, with no memory, no link and none of this conversation, and reads only the issue. So the issue is evergreen: it names the objective and its finish line, official docs carry the reader the rest of the way, and nothing in it rots at the next commit.
 
 ## Definition of done
 
@@ -39,13 +38,13 @@ In an issue session the user shapes several issues, then says go. The go approve
 
 ## Step 1: Settle the scope
 
-First read in full the product docs the repo's `AGENTS.md` points to. The issue serves their vision and speaks their words.
+First read in full the product docs the project keeps, such as a vision or a glossary, when it has some. The issue serves their vision and speaks their words.
 
 An issue shaped in this conversation arrives settled: take its facts and decisions as they stand.
 
 Otherwise, explore the codebase until you know what changes and where it stops. When it could mean several things, or the scope could be one file or fifty, run `mattpocock-skills:grilling` on the open decisions, with your findings as settled facts.
 
-One issue is one PR. Work that needs two PRs becomes two issues.
+Each issue stands alone and fits in one PR, even when a PR later carries it beside others. Work that needs two PRs becomes two issues.
 
 An issue that retires a pattern ships its **lock**, or names the issue right after it that does.
 
@@ -73,11 +72,11 @@ Done when each thing the issue touches has its official link, or you have said t
 
 ## Step 4: Write the issue
 
-Write the whole issue in English, title included, whatever the language of the conversation.
+Write the whole issue, title included, in the language of the repository's issues, whatever the language of the conversation. With no issue to follow, write in English.
 
 Evergreen means names, never snapshots. Exports, packages and config files appear by name in backticks. Code blocks, counts, measurements and line numbers go stale at the first commit, so none of them appear: the fresh session measures on its own branch.
 
-The issue says what changes and where it stops, and leaves the how to the session that takes it. A design choice the issue leaves open is named as "this issue's call".
+The issue says what changes and where it stops, and leaves the how to the session that takes it. Each decision of the conversation the work relies on is written in it. A design choice the issue leaves open is named as "this issue's call".
 
 The issue fits on one screen: most run near 120 words, few past 200. An issue that grows past that holds two issues.
 
@@ -106,7 +105,7 @@ A backend package that imports `isEmpty` stops the issue: comment here.
 - **Done when** is the finish line: 2 to 4 bullets, each one a state the session can check on its branch. The lock is one of them, as `@repo/utils` no longer holding `isEmpty` is above.
 - The stop line names the case that ends the issue early, and says to comment on the issue.
 
-The title is an imperative objective of about 6 words, lowercase after the prefix, with names in backticks:
+The title is an imperative objective of about 6 words, with names in backticks, in the style of the neighbouring issues. With none to follow:
 
 - One package: the package name, then the objective. `hooks: add useMediaQuery`
 - The objective already names the package: no prefix. ``Replace `isEmpty` of `@repo/utils` with es-toolkit``

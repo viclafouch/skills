@@ -16,7 +16,7 @@ Done when you can tell the story of the subject in three sentences.
 
 ## 2. Read the product's own story
 
-Read the product docs as they stand today: the files `AGENTS.md` points to for the product, the vision, the audiences, the glossary. They hold the direction every proposal serves, and the vocabulary every proposal speaks. A decision already recorded there is settled.
+Read the product docs the project keeps as they stand today, such as a vision, the audiences or a glossary. With none, the README and the conversation carry them. They hold the direction every proposal serves, and the vocabulary every proposal speaks. A decision already recorded there is settled.
 
 Done when you can name the audiences, the stated direction, and the open questions the docs admit.
 
@@ -69,7 +69,7 @@ Rank the proposals by impact on the people who use the product. Five at most: pa
 
 - **Target**: product, issue #n, or plan.
 - **Seen**: the signal, with the screen, the email or the moment it comes from.
-- **Proposal**: the change, in the product's vocabulary.
+- **Proposal**: the change.
 - **Why**: who gains, and the link to the direction.
 - **Size**: the screens, emails and flows it touches.
 - **Decision**: the question only the user can settle, when there is one.
