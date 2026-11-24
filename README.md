@@ -9,6 +9,7 @@ The Claude Code plugin of Victor de la Fouchardière: the skills behind how he w
 | `create-issue` | Files one evergreen GitHub issue per run, shaped so a fresh session can take it with nothing else |
 | `load-issue` | Briefs a GitHub issue from its live state: whether it can start, and where its description drifted from the code |
 | `start-issue` | Takes an issue from a fresh base branch to a reviewed working tree, routed to test-driven development, a plain implement loop, or a diagnosis |
+| `file-lead` | Files a find from the tech watch into the GitHub issues of the current repository: a comment on the issue it bears on, or a new issue, with what it is, what it could serve and what it brings |
 | `product-retro` | Looks back on a session or a subject and proposes grounded product changes, amendments to open issues, or challenges to the plan |
 
 Each skill runs as `/<skill>`, or `/viclafouch:<skill>` when another command already holds the short name. `start-issue` and `product-retro` run only when you type them.

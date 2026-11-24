@@ -19,11 +19,12 @@ Read the argument as `42`, `#42`, `owner/repo#42` or an issue URL, otherwise ask
 ## 3. Rule
 
 - **Can it start?** Yes when the issue is `OPEN` and no open PR sits in `closedByPullRequestsReferences`. Otherwise name the state, or the open PR and its author.
+- **Shared links.** Open again each link a comment shares, and name what changed since the comment was posted: a new release, a moved page, a dead link.
 - **Drift.** Grep every path and symbol quoted in the description against `origin/<base>` (`git grep <pattern> origin/<base>`) and flag the stale ones. Where a comment changes the description's scope, the latest comment wins, in one line.
 
 ## 4. Brief
 
-Free prose in the user's language, `:` or `,` where a dash would go, headings as the issue earns them. Carry the number and title, the description in a few sentences, the startable verdict, the labels and assignees, what the comments settled, and the stale paths. Stay silent on anything the issue has nothing for.
+Free prose in the user's language, `:` or `,` where a dash would go, headings as the issue earns them. Carry the number and title, the description in a few sentences, the startable verdict, the labels and assignees, what the comments settled, each shared link with what changed since, and the stale paths. Stay silent on anything the issue has nothing for.
 
 ## Rules
 
